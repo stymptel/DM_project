@@ -1,0 +1,19 @@
+{
+  "name": "logic-minesweeper",
+  "version": "1.0.0",
+  "description": "Logic Minesweeper — a kids' logic puzzle game teaching Boolean algebra",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "audit:contrast": "node scripts/contrast-audit.mjs",
+    "audit:layout": "node scripts/layout-audit.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3"
+  }
+}

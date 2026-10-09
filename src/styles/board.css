@@ -1,0 +1,114 @@
+/* board.css — game board and cell styles */
+
+.board {
+  display: grid;
+  gap: clamp(4px, 0.6cqmin, 10px);
+  width: min(100cqw, 150cqh);
+  height: min(100cqh, 150cqw);
+  background: var(--clr-surface);
+  border-radius: var(--r-md);
+  margin: 0 auto;
+}
+
+/* Fallback for browsers without container queries */
+@supports not (container-type: size) {
+  .board {
+    width: 100%;
+    aspect-ratio: 1;
+    max-height: 100%;
+  }
+}
+
+/* ── Cells ── */
+.cell {
+  container-type: size;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--r-sm);
+  background: var(--clr-unknown);
+  border: 2px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-text);
+  font-size: clamp(14px, 28cqmin, 44px);
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-med);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cell:hover {
+  transform: translateY(-2px);
+  background: var(--clr-cell-hover);
+  box-shadow: 0 0 0 2px var(--clr-accent);
+  z-index: 1;
+}
+
+.cell:active {
+  transform: scale(0.93);
+}
+
+.cell.state-mine {
+  background: var(--clr-mine);
+  border-color: color-mix(in srgb, var(--clr-mine) 80%, white);
+  animation: flip-in 0.3s ease;
+  color: var(--clr-mine-text);
+}
+
+.cell.state-safe {
+  background: var(--clr-safe);
+  border-color: color-mix(in srgb, var(--clr-safe) 80%, white);
+  animation: flip-in 0.3s ease;
+  color: var(--clr-safe-text);
+}
+
+.cell.state-mine.locked,
+.cell.state-safe.locked {
+  cursor: default;
+  pointer-events: none;
+}
+
+.cell.highlighted {
+  box-shadow: 0 0 0 3px var(--clr-accent), 0 0 20px rgba(124,111,247,0.4);
+  animation: pulse-glow 1s ease-in-out infinite;
+  z-index: 2;
+}
+
+.cell:focus-visible { box-shadow: 0 0 0 3px var(--clr-accent); }
+
+.cell .cell-id {
+  color: var(--clr-text);
+  font-size: clamp(14px, 28cqmin, 44px);
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  opacity: 1;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cell .cell-icon {
+  font-size: clamp(18px, 45cqmin, 72px);
+  line-height: 1;
+}
+
+.state-safe .cell-id { color: var(--clr-safe-text); }
+.state-mine .cell-id { color: var(--clr-mine-text); }
+
+/* Wave reveal stagger */
+.cell.wave-reveal {
+  animation: wave-reveal 0.4s ease both;
+}
+
+/* Ripple overlay on declaration */
+.cell-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255,255,255,0.3);
+  animation: ripple 0.5s ease-out forwards;
+  pointer-events: none;
+}

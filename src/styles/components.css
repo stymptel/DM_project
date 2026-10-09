@@ -1,0 +1,303 @@
+/* components.css — cards, buttons, HUD elements */
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-sm);
+  padding: 10px 24px;
+  border-radius: var(--r-pill);
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+  min-height: 44px;
+  cursor: pointer;
+  border: none;
+  color: var(--clr-text);
+}
+
+.btn-primary {
+  background: var(--clr-accent);
+  color: #0f1028;
+  box-shadow: 0 4px 20px rgba(124,111,247,0.4);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(124,111,247,0.5); }
+.btn-primary:active { transform: scale(0.97); }
+
+.btn-secondary {
+  background: var(--clr-surface2);
+  color: var(--clr-text);
+  border: 1px solid var(--clr-border);
+}
+.btn-secondary:hover { background: var(--clr-border); }
+
+.btn-danger {
+  background: var(--clr-danger);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--clr-text-dim);
+  border: 1px solid var(--clr-border);
+}
+.btn-ghost:hover { color: var(--clr-text); border-color: var(--clr-accent); }
+
+/* ── Clue cards ── */
+.clue-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-md);
+  padding: var(--sp-sm) var(--sp-md);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+  animation: slide-up 0.3s ease both;
+}
+
+.clue-card:hover,
+.clue-card.active {
+  border-color: var(--clr-accent);
+  box-shadow: 0 2px 12px rgba(124,111,247,0.25);
+}
+
+.clue-card.satisfied {
+  border-color: var(--clr-success);
+  background: color-mix(in srgb, var(--clr-success) 10%, var(--clr-surface));
+}
+
+.clue-card.violated {
+  border-color: var(--clr-danger);
+  background: color-mix(in srgb, var(--clr-danger) 10%, var(--clr-surface));
+  animation: shake 0.4s ease;
+}
+
+.clue-english {
+  font-size: 0.9rem;
+  color: var(--clr-text);
+  margin-bottom: 2px;
+}
+
+.clue-symbolic {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--clr-accent);
+}
+
+.clue-satisfied-icon {
+  color: var(--clr-success);
+  font-size: 1.1rem;
+}
+
+/* SVG tick animation */
+.clue-tick {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: tick-draw 0.4s ease forwards;
+}
+
+/* ── HeartsBar ── */
+.hearts-bar {
+  display: flex;
+  gap: var(--sp-sm);
+  align-items: center;
+}
+
+.heart {
+  font-size: 1.4rem;
+  transition: transform var(--t-fast);
+}
+
+.heart.full { animation: heart-pop 0.3s ease; }
+.heart.broken { animation: heart-break 0.4s ease forwards; }
+.heart.empty { opacity: 0.2; }
+
+/* ── Timer ── */
+.timer {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--clr-text-dim);
+  min-width: 60px;
+  text-align: center;
+}
+
+/* ── ToolPalette ── */
+.tool-palette {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  background: var(--clr-surface);
+  padding: var(--sp-sm);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--clr-border);
+}
+
+.tool-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid transparent;
+  font-size: 1.2rem;
+  color: var(--clr-text);
+  transition: all var(--t-fast);
+  cursor: pointer;
+}
+
+.tool-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.tool-btn:hover { background: var(--clr-surface2); }
+
+.tool-btn.active {
+  background: var(--clr-accent);
+  color: #0f1028;
+  border-color: white;
+  box-shadow: 0 0 12px rgba(124,111,247,0.5);
+}
+
+/* ── HintPanel ── */
+.hint-panel {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-accent);
+  border-radius: var(--r-md);
+  padding: var(--sp-md);
+  animation: slide-up 0.3s ease;
+  min-width: 0;
+}
+
+.hint-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--clr-text);
+}
+
+.feedback-title { display: block; margin-bottom: var(--sp-xs); color: var(--clr-accent); font-weight: 800; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+.mascot-wrap {
+  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+}
+
+.mascot-avatar {
+  width: 64px;
+  height: 64px;
+  font-size: 3rem;
+  text-align: center;
+  animation: float 3s ease-in-out infinite, blink 5s ease-in-out infinite;
+}
+
+/* ── Modal ── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  animation: pop-in 0.2s ease;
+}
+
+.modal {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl);
+  max-width: 480px;
+  width: 90%;
+  animation: pop-in 0.3s ease;
+}
+
+.modal h2 { margin-bottom: var(--sp-md); font-size: 1.5rem; }
+
+/* ── Toast ── */
+.toast-container {
+  position: fixed;
+  top: var(--sp-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  z-index: 300;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--clr-surface2);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-pill);
+  padding: var(--sp-sm) var(--sp-lg);
+  font-size: 0.9rem;
+  animation: slide-down 0.3s ease;
+  white-space: nowrap;
+}
+
+.toast.success { border-color: var(--clr-success); color: var(--clr-success); }
+.toast.error   { border-color: var(--clr-danger); color: var(--clr-danger); }
+
+/* ── TruthTable ── */
+.truth-table {
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.truth-table th, .truth-table td {
+  border: 1px solid var(--clr-border);
+  padding: 6px 12px;
+  text-align: center;
+}
+
+.truth-table th { background: var(--clr-surface2); color: var(--clr-accent); }
+.truth-table td.true  { color: var(--clr-success); }
+.truth-table td.false { color: var(--clr-danger); }
+.truth-table tr.active td { background: color-mix(in srgb, var(--clr-accent) 15%, transparent); }
+
+/* ── Progress bar ── */
+.progress-bar {
+  height: 6px;
+  background: var(--clr-surface2);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+
+@media (max-width: 699px) {
+  .tool-palette {
+    flex-direction: row;
+    justify-content: center;
+    border-radius: var(--r-pill);
+  }
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--clr-accent);
+  border-radius: var(--r-pill);
+  transition: width 0.5s ease;
+}
+
+/* ── Stars ── */
+.stars {
+  display: flex;
+  gap: var(--sp-sm);
+  justify-content: center;
+}
+
+.star {
+  font-size: 2rem;
+  opacity: 0.2;
+  transition: opacity var(--t-med);
+}
+.star.earned {
+  opacity: 1;
+  color: var(--clr-gold);
+  animation: star-pop 0.5s ease both;
+}

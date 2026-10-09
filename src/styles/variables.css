@@ -1,0 +1,65 @@
+/* variables.css — colour palette, spacing, fonts, themes */
+:root {
+  /* Core palette */
+  --clr-bg: #0F1028;
+  --clr-bg2: #171936;
+  --clr-surface: #1C1D40;
+  --clr-surface2: #26275A;
+  --clr-border: #777BC0;
+  --clr-text: #F4F5FF;
+  --clr-text-dim: #C3C7EC;
+  --clr-accent: #B3A6FF;
+  --clr-accent2: #5e57e0;
+  --clr-success: #2FD68D;
+  --clr-danger: #FF7A8A;
+  --clr-warn: #FFB347;
+  --clr-gold: #ffd700;
+  --clr-mine: #FFB347;
+  --clr-safe: #2FD68D;
+  --clr-unknown: #2E3070;
+  --clr-cell-hover: #3A3D8C;
+  --clr-safe-text: #04281A;
+  --clr-mine-text: #251000;
+
+  /* Spacing */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 40px;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-pill: 100px;
+
+  /* Typography */
+  --font-main: 'Nunito', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-dyslexia: 'OpenDyslexic', sans-serif;
+
+  /* Transitions */
+  --t-fast: 150ms ease;
+  --t-med: 300ms ease;
+  --t-slow: 500ms ease;
+
+  /* Cell sizes */
+  --cell-size: 56px;
+  --cell-size-sm: 40px;
+}
+
+/* Colour-blind palette (toggled via .cb-mode on body) */
+body.cb-mode {
+  --clr-mine: #d55e00;
+  --clr-safe: #009e73;
+  --clr-accent: #0072b2;
+  --clr-success: #009e73;
+  --clr-danger: #d55e00;
+}
+
+/* Large text */
+body.large-text { font-size: 120%; }
+
+/* Dyslexia font */
+body.dyslexia { --font-main: var(--font-dyslexia); }
